@@ -1,0 +1,11 @@
+services:
+  node:
+    command: yarn dev
+    image: node:8-alpine
+    ports:
+    - 8000:8000/tcp
+    volumes:
+    - /Users/matheus/Code/Bravi/Assessment/Web:/home/app:rw
+    working_dir: /home/app
+version: '3.0'
+

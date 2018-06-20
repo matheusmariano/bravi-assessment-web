@@ -1,0 +1,10 @@
+version: '3'
+services:
+  node:
+    image: node:8-alpine
+    command: yarn dev
+    volumes:
+      - .:/home/app
+    working_dir: /home/app
+    ports:
+      - ${DOCKER_NODE_PORT}:8000

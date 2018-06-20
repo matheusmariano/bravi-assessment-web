@@ -15,6 +15,12 @@ Copy the `.env.example` to `.env`
 cp .env.example .env
 ```
 
+Generate a `docker-compose.yml` for your environment. If you are running a development server, you can just run the following command.
+
+```
+docker-compose -f docker-compose.dev.yml config > docker-compose.yml
+```
+
 Install Node dependencies
 
 ```

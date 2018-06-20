@@ -307,3 +307,7 @@ $RECYCLE.BIN/
 
 # Project files
 public/app.js**
+
+
+# Docker
+docker-compose.yml

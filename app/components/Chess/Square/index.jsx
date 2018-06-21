@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import * as ReactSauce from '../../../libs/ReactSauce/';
 import { DARK, LIGHT } from './controller';
 import * as PieceController from '../Piece/controller';
-import Piece from '../Piece/';
+import Knight from '../Piece/knight';
+import Hightlight from '../Piece/highlight';
 import './style.scss';
 
 export default function Square(props) {
@@ -18,16 +19,21 @@ export default function Square(props) {
         })
       }
     >
-      {props.piece}
+      <span className="fa-layers fa-fw">
+        {props.piece}
+        {props.highlight}
+      </span>
     </div>
   );
 }
 
 Square.propTypes = {
   color: PropTypes.string.isRequired,
+  highlight: PropTypes.node,
   piece: PropTypes.node,
 };
 
 Square.defaultProps = {
-  piece: <Piece color={PieceController.WHITE} />,
+  piece: <Knight color={PieceController.WHITE} />,
+  highlight: <Hightlight color={PieceController.BLACK} />,
 };

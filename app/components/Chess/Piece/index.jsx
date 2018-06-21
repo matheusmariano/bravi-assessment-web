@@ -1,19 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import * as ReactSauce from '../../../libs/ReactSauce/';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChessKnight } from '@fortawesome/free-solid-svg-icons';
 import { WHITE } from './controller';
 
 export default function Piece(props) {
   return (
-    <i
-      className={
-        ReactSauce.classes({
-          fas: true,
-          'fa-chess-knight': true,
-          'fa-2x': true,
-          'text-white': props.color === WHITE,
-        })
-      }
+    <FontAwesomeIcon
+      icon={faChessKnight}
+      size="2x"
+      color={props.color === WHITE && 'white'}
     />
   );
 }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
+import Board from '../../components/Chess/Board/';
 
 class HomeScene extends Component {
   static get contextTypes() {
@@ -20,12 +21,15 @@ class HomeScene extends Component {
 
   render() {
     return (
-      <div>
-        <section>
-          <h1>
-            <FormattedMessage id="home.title" />
-          </h1>
-        </section>
+      <div className="container">
+        <div className="row">
+          <div className="col d-flex flex-column align-items-center">
+            <h1>
+              <FormattedMessage id="home.title" />
+            </h1>
+            <Board />
+          </div>
+        </div>
       </div>
     );
   }

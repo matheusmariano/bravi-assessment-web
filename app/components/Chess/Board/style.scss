@@ -4,16 +4,3 @@
   border: color('deep-rose') solid 8px;
   display: inline-block;
 }
-
-.square {
-  height: 50px;
-  width: 50px;
-
-  &-dark {
-    background-color: color('hollyhock');
-  }
-
-  &-light {
-    background-color: color('sweet-rose');
-  }
-}

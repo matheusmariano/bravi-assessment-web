@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import * as ReactSauce from '../../../libs/ReactSauce/';
 import * as BoardController from './controller';
+import Square from '../Square/';
 import './style.scss';
 
 export default class Board extends Component {
@@ -19,29 +19,23 @@ export default class Board extends Component {
     };
   }
 
-  getSquares() {
+  arrangeSquares() {
     const { cols, rows } = this.props;
 
-    return BoardController.getSquares(cols, rows);
+    return BoardController.arrangeSquares(cols, rows);
   }
 
   renderSquares() {
-    return this.getSquares().map(row => (
+    return this.arrangeSquares().map(row => (
       <div
         className="d-flex flex-row"
         key={row[0].name}
       >
         {
           row.map(square => (
-            <div
+            <Square
+              color={square.color}
               key={square.name}
-              styleName={
-                ReactSauce.classes({
-                  square: true,
-                  'square-light': square.color === BoardController.LIGHT,
-                  'square-dark': square.color === BoardController.DARK,
-                })
-              }
             />
           ))
         }

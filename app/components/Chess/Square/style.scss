@@ -1,0 +1,14 @@
+@import '../../../styles/main';
+
+.square {
+  height: 50px;
+  width: 50px;
+
+  &-dark {
+    background-color: color('hollyhock');
+  }
+
+  &-light {
+    background-color: color('sweet-rose');
+  }
+}

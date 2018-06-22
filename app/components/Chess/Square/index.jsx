@@ -2,9 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as ReactSauce from '../../../libs/ReactSauce/';
 import { DARK, LIGHT } from './controller';
-import * as PieceController from '../Piece/controller';
-import Knight from '../Piece/knight';
-import Hightlight from '../Piece/highlight';
 import './style.scss';
 
 export default function Square(props) {
@@ -34,6 +31,6 @@ Square.propTypes = {
 };
 
 Square.defaultProps = {
-  piece: <Knight color={PieceController.WHITE} />,
-  highlight: <Hightlight color={PieceController.BLACK} />,
+  piece: null,
+  highlight: null,
 };

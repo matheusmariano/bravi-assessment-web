@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import * as BoardController from './controller';
+import * as BoardPropTypes from './prop-types';
 import Square from '../Square/';
+import Knight from '../Piece/knight';
+import Highlight from '../Piece/highlight';
 import './style.scss';
 
 export default class Board extends Component {
   static get propTypes() {
     return {
       cols: PropTypes.number,
+      highlights: PropTypes.arrayOf(
+        BoardPropTypes.algebraicNotation,
+      ),
+      pieces: PropTypes.arrayOf(
+        BoardPropTypes.algebraicNotation,
+      ),
       rows: PropTypes.number,
     };
   }
@@ -15,14 +24,21 @@ export default class Board extends Component {
   static get defaultProps() {
     return {
       cols: 8,
+      highlights: [],
+      pieces: [],
       rows: 8,
     };
   }
 
   arrangeSquares() {
-    const { cols, rows } = this.props;
+    const {
+      cols,
+      highlights,
+      pieces,
+      rows,
+    } = this.props;
 
-    return BoardController.arrangeSquares(cols, rows);
+    return BoardController.arrangeSquares(cols, rows, pieces, highlights);
   }
 
   renderSquares() {
@@ -36,6 +52,8 @@ export default class Board extends Component {
             <Square
               color={square.color}
               key={square.name}
+              piece={square.piece && <Knight color={square.piece.color} />}
+              highlight={square.highlight && <Highlight color={square.highlight} />}
             />
           ))
         }

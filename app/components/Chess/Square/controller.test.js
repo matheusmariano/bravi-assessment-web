@@ -25,11 +25,11 @@ describe('SquareController', () => {
     ).toBe('a1');
 
     expect(
-      SquareController.getSquareName(0, 1),
+      SquareController.getSquareName(1, 0),
     ).toBe('a2');
 
     expect(
-      SquareController.getSquareName(1, 0),
+      SquareController.getSquareName(0, 1),
     ).toBe('b1');
 
     expect(

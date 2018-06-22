@@ -27,7 +27,10 @@ class HomeScene extends Component {
             <h1>
               <FormattedMessage id="home.title" />
             </h1>
-            <Board />
+            <Board
+              pieces={['Na3', 'nb2']}
+              highlights={['d1', 'd3', 'c4', 'a4', 'B1', 'C2', 'C4', 'B5']}
+            />
           </div>
         </div>
       </div>

@@ -1,7 +1,9 @@
 {
   "home": {
     "page_title": "Chessboard",
-    "title": "Chessboard"
+    "title": "Chessboard",
+    "analyse": "Analyse",
+    "instructions": "Insert in [algebraic notation](https://en.wikipedia.org/wiki/Algebraic_notation_(chess)) the position of tho horses, a white and a black. Eg. `Na3 nb2`."
   },
   "not_found": {
     "page_title": "Not Found",

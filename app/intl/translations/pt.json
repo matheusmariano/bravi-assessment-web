@@ -1,7 +1,9 @@
 {
   "home": {
     "page_title": "Tabuleiro de Xadrez",
-    "title": "Tabuleiro de Xadrez"
+    "title": "Tabuleiro de Xadrez",
+    "analyse": "Analisar",
+    "instructions": "Digite em [notação algébrica](https://pt.wikipedia.org/wiki/Nota%C3%A7%C3%A3o_alg%C3%A9brica_de_xadrez) a posição de dois cavalos, um branco e um preto. Ex.: `Na3 nb2`."
   },
   "not_found": {
     "page_title": "Não Encontrado",

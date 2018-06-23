@@ -61,7 +61,7 @@ export function arrangeSquares(cols, rows, pieces = [], highlights = []) {
     .map((row, y) =>
       row.map((square, x) => {
         const piece = getPieceFromPosition(x, y, pieces);
-        const highlight = getHighlightFromPosition(x, y, highlights);
+        const highlight = getHighlightFromPosition(x, y, R.reverse(highlights));
 
         const result = {
           ...square,

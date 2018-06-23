@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import Markdown from 'react-markdown';
 import * as R from 'ramda';
 import Board from '../../components/Chess/Board/';
 import * as ReactSauce from '../../libs/ReactSauce/';
+import * as BoardPropTypes from '../../components/Chess/Board/prop-types';
+import ChessActions from '../../data/chess/redux';
 
 class HomeScene extends Component {
   static get contextTypes() {
@@ -19,6 +22,7 @@ class HomeScene extends Component {
 
     this.state = {
       pieces: ['Na3', 'nb2'],
+      highlights: ['B1', 'C2', 'C4', 'B5', 'd1', 'd3', 'c4', 'a4'],
       form: {
         input: 'Na3 nb2',
         valid: true,
@@ -29,6 +33,12 @@ class HomeScene extends Component {
 
   componentWillMount() {
     document.title = this.formatMessage({ id: 'home.page_title' });
+  }
+
+  componentWillReceiveProps({ highlights }) {
+    if (highlights) {
+      this.setState({ highlights });
+    }
   }
 
   setStateByPath(path, value) {
@@ -55,6 +65,10 @@ class HomeScene extends Component {
     this.setStateByPath(['form', 'validated'], validated);
   }
 
+  setPiecesState(pieces) {
+    this.setState({ pieces });
+  }
+
   formatMessage(props) {
     return this.context.intl.formatMessage(props);
   }
@@ -79,9 +93,10 @@ class HomeScene extends Component {
   }
 
   analyze() {
-    this.setState({
-      pieces: this.state.form.input.split(' '),
-    });
+    const pieces = this.state.form.input.split(' ');
+
+    this.setPiecesState(pieces);
+    this.props.requestPreview(pieces, 8, 8);
   }
 
   render() {
@@ -94,7 +109,7 @@ class HomeScene extends Component {
             </h1>
             <Board
               pieces={this.state.pieces}
-              highlights={['d1', 'd3', 'c4', 'a4', 'B1', 'C2', 'C4', 'B5']}
+              highlights={this.state.highlights}
             />
             <form
               className={
@@ -141,4 +156,31 @@ class HomeScene extends Component {
   }
 }
 
-export default withRouter(HomeScene);
+HomeScene.propTypes = {
+  highlights: PropTypes.arrayOf(
+    BoardPropTypes.algebraicNotation,
+  ),
+  requestPreview: PropTypes.func.isRequired,
+};
+
+HomeScene.defaultProps = {
+  highlights: [],
+};
+
+function mapStateToProps(state) {
+  return {
+    highlights: state.chess.highlights,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    requestPreview: (pieces, cols, rows) => dispatch(
+      ChessActions.chessPreviewRequest(pieces, cols, rows),
+    ),
+  };
+}
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(HomeScene),
+);

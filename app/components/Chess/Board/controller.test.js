@@ -4,41 +4,41 @@ import * as Piece from '../Piece/controller';
 
 describe('BoardController', () => {
   describe('getCoordinatesFromNotation', () => {
-    describe('A2 must point to (1, 0)', () => {
+    describe('A2 must point to (0, 1)', () => {
       expect(
         BoardController.getCoordinatesFromNotation('A2'),
       ).toEqual({
-        x: 1,
-        y: 0,
+        x: 0,
+        y: 1,
       });
     });
 
-    describe('c2 must point to (1, 2)', () => {
+    describe('c2 must point to (2, 1)', () => {
       expect(
         BoardController.getCoordinatesFromNotation('c2'),
       ).toEqual({
-        x: 1,
-        y: 2,
+        x: 2,
+        y: 1,
       });
     });
 
-    describe('j12 must point to (11, 9)', () => {
+    describe('j12 must point to (9, 11)', () => {
       expect(
         BoardController.getCoordinatesFromNotation('j12'),
       ).toEqual({
-        x: 11,
-        y: 9,
+        x: 9,
+        y: 11,
       });
     });
   });
 
   describe('decodePiecePosition', () => {
-    test('Nb3 must point a white knight at (2, 1)', () => {
+    test('Nb3 must point a white knight at (1, 2)', () => {
       expect(
         BoardController.decodePiecePosition('Nb3'),
       ).toEqual({
-        x: 2,
-        y: 1,
+        x: 1,
+        y: 2,
         piece: {
           color: Piece.WHITE,
           type: Piece.KNIGHT,
@@ -50,39 +50,39 @@ describe('BoardController', () => {
   describe('getPieceFromPosition', () => {
     const pieces = ['Nb3'];
 
-    test('(2, 1) with Nb3 must point a white knight', () => {
+    test('(1, 2) with Nb3 must point a white knight', () => {
       expect(
-        BoardController.getPieceFromPosition(2, 1, pieces),
+        BoardController.getPieceFromPosition(1, 2, pieces),
       ).toEqual({
         type: Piece.KNIGHT,
         color: Piece.WHITE,
       });
     });
 
-    test('(1, 2) with Nb3 must point nothing', () => {
+    test('(2, 1) with Nb3 must point nothing', () => {
       expect(
-        BoardController.getPieceFromPosition(1, 2, pieces),
+        BoardController.getPieceFromPosition(2, 1, pieces),
       ).toBe(undefined);
     });
   });
 
   describe('decodeHighlightPosition', () => {
-    test('A3 must point a white highlight at (2, 0)', () => {
+    test('A3 must point a white highlight at (0, 2)', () => {
       expect(
         BoardController.decodeHighlightPosition('A3'),
       ).toEqual({
-        x: 2,
-        y: 0,
+        x: 0,
+        y: 2,
         highlight: Piece.WHITE,
       });
     });
 
-    test('b1 must point a black highlight at (0, 1)', () => {
+    test('b1 must point a black highlight at (1, 0)', () => {
       expect(
         BoardController.decodeHighlightPosition('b1'),
       ).toEqual({
-        x: 0,
-        y: 1,
+        x: 1,
+        y: 0,
         highlight: Piece.BLACK,
       });
     });
@@ -91,15 +91,15 @@ describe('BoardController', () => {
   describe('getHighlightFromPosition', () => {
     const highlights = ['B3'];
 
-    test('(2, 1) with B3 must point a white highlight', () => {
+    test('(1, 2) with B3 must point a white highlight', () => {
       expect(
-        BoardController.getHighlightFromPosition(2, 1, highlights),
+        BoardController.getHighlightFromPosition(1, 2, highlights),
       ).toBe(Piece.WHITE);
     });
 
-    test('(1, 2) with B3 must point nothing', () => {
+    test('(2, 1) with B3 must point nothing', () => {
       expect(
-        BoardController.getHighlightFromPosition(1, 2, highlights),
+        BoardController.getHighlightFromPosition(2, 1, highlights),
       ).toBe(undefined);
     });
   });
@@ -112,7 +112,7 @@ describe('BoardController', () => {
         [
           {
             color: Square.LIGHT,
-            name: 'b1',
+            name: 'a2',
           },
           {
             color: Square.DARK,
@@ -126,7 +126,7 @@ describe('BoardController', () => {
           },
           {
             color: Square.LIGHT,
-            name: 'a2',
+            name: 'b1',
           },
         ],
       ]);
@@ -139,12 +139,15 @@ describe('BoardController', () => {
         [
           {
             color: Square.LIGHT,
-            name: 'c1',
-            highlight: Piece.BLACK,
+            name: 'a3',
+            piece: {
+              color: Piece.WHITE,
+              type: Piece.KNIGHT,
+            },
           },
           {
             color: Square.DARK,
-            name: 'c2',
+            name: 'b3',
           },
           {
             color: Square.LIGHT,
@@ -158,7 +161,7 @@ describe('BoardController', () => {
         [
           {
             color: Square.DARK,
-            name: 'b1',
+            name: 'a2',
           },
           {
             color: Square.LIGHT,
@@ -166,7 +169,7 @@ describe('BoardController', () => {
           },
           {
             color: Square.DARK,
-            name: 'b3',
+            name: 'c2',
           },
         ],
         [
@@ -177,15 +180,12 @@ describe('BoardController', () => {
           },
           {
             color: Square.DARK,
-            name: 'a2',
+            name: 'b1',
           },
           {
             color: Square.LIGHT,
-            name: 'a3',
-            piece: {
-              color: Piece.WHITE,
-              type: Piece.KNIGHT,
-            },
+            name: 'c1',
+            highlight: Piece.BLACK,
           },
         ],
       ]);

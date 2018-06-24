@@ -11,5 +11,5 @@ export function getSquareColor(x, y) {
 }
 
 export function getSquareName(x, y) {
-  return String.fromCharCode(97 + y) + (x + 1);
+  return String.fromCharCode(97 + x) + (y + 1);
 }

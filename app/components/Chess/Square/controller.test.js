@@ -26,14 +26,14 @@ describe('SquareController', () => {
 
     expect(
       SquareController.getSquareName(1, 0),
-    ).toBe('a2');
+    ).toBe('b1');
 
     expect(
       SquareController.getSquareName(0, 1),
-    ).toBe('b1');
+    ).toBe('a2');
 
     expect(
       SquareController.getSquareName(1, 1),
     ).toBe('b2');
   });
-})
+});
